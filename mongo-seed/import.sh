@@ -1,0 +1,1 @@
+mongoimport -h mongo:27017 --db test --collection videos --type json --file /mongo-seed/videolist.json --jsonArray

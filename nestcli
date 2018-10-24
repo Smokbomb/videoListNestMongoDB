@@ -1,0 +1,6 @@
+$ nest g controller controller-name
+$ nest g service service/service-name
+$ nest g module module-name 
+
+$ ng build --deploy-url /dist/videolist/ --base-href /dist/videolist/
+$ docker-compose up
