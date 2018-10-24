@@ -1,3 +1,3 @@
 # backend-server
 
-Steb 1 CMD docker-compose up
+Steb 1 $ docker-compose up
