@@ -14,8 +14,13 @@ export class EventsGateway {
     @WebSocketServer() server;
 
     @SubscribeMessage('video')
-    async getVideo(client, id: string): WsResponse<any> {
-        await this.videoService.updateLike(id);
-        return await { 'video': await this.videoService.findAll() };
+      getVideo(client, id: any): Observable<WsResponse<any>> {
+        const event = 'video';
+        const response = this.videoService.findAll();
+        this.videoService.updateLike(id);
+        this.videoService.findAll();
+        return from(response).pipe(
+            map( data => ({ event, data })),
+        );
     }
 }

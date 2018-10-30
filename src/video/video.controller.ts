@@ -1,5 +1,6 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Put, Delete } from '@nestjs/common';
 import { VideoService } from './video.service';
+import { Video } from './video.interface';
 
 @Controller('video')
 export class VideoController {
@@ -7,7 +8,6 @@ export class VideoController {
 
     @Get()
     async findAll(): Promise<any[]> {
-        await console.log(await this.videoService.findAll());
         return await this.videoService.findAll();
     }
     @Get(':id')
@@ -15,12 +15,22 @@ export class VideoController {
         return this.videoService.findById(params.id);
     }
     @Post()
-    savePhoto(@Body() body) {
+    updatInfo(@Body() body) {
         if (body.like === '1') {
             this.videoService.updateLike(body.id);
         }
         if (body.view === '1') {
             this.videoService.updateView(body.id);
         }
+    }
+
+    @Put()
+    saveVideo(@Body() video: Video) {
+        this.videoService.create(video);
+        return true ;
+    }
+    @Delete(':id')
+    deleteById(@Param() params) {
+        return this.videoService.removeById(params.id);
     }
 }

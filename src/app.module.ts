@@ -11,7 +11,7 @@ import { VideoModule } from 'video/video.module';
 import { FrontendMiddleware } from './modules/common/middleware/frontend/frontend.middleware';
 @Module({
 // MongooseModule.forRoot('mongodb://mongo:27017')
-  imports: [ MongooseModule.forRoot('mongodb://mongo:27017/test'), VideoModule , EventsModule],
+  imports: [ MongooseModule.forRoot('mongodb://localhost:27017/test'), VideoModule , EventsModule],
   controllers: [AppController],
   providers: [AppService],
 })
